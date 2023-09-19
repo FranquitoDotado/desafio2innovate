@@ -1,6 +1,6 @@
 async function loadProducts() {
     try {
-        const response = await fetch("./data/productn.json");
+        const response = await fetch("./data/products.json");
         if (!response.ok) {
             throw new Error('No se pudo cargar el archivo JSON');
         }
@@ -8,18 +8,31 @@ async function loadProducts() {
         const data = await response.json();
         const productList = document.getElementById('product-list');
 
-        for (let i = 0; i < data.products.length; i++) {
-            const listItem = document.createElement('div')
-            listItem.innerHTML = ''
-            for (let i2 = 0; i2 < data.products.length; i2++){
-                
-            }
-            productList.appendChild(listItem);
+        for (let i = 0; i < 20; i++) {
+            productList.appendChild(template(data.products[i]));
         }
 
     } catch (error) {
         console.error('Error al cargar los productos:', error);
     }
+}
+
+function template(product) {
+    let template = document.createElement("div")
+    template.append(product.title)
+    images(product.images, template)
+    return template
+}
+
+function images(images, template) {
+    let res = ""
+        for (let i = 0; i < images.length; i++) {
+        const element = images[i];
+        const image = document.createElement("img")
+        image.src = element.src
+        template.append(image)
+    }
+    return res
 }
 
 loadProducts();
