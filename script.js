@@ -35,4 +35,15 @@ function images(images, template) {
     return res
 }
 
+var elem = document.querySelectorAll('.main-carousel');
+for (let index = 0; index < elem.length; index++) {
+    const element = elem[index];
+    var flkty = new Flickity( element, {
+        // options
+        cellAlign: 'left',
+        contain: true
+      });
+}
+
+
 loadProducts();
