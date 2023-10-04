@@ -26,7 +26,7 @@ function template(product) {
 
 function images(images, template) {
     let res = ""
-        for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < images.length; i++) {
         const element = images[i];
         const image = document.createElement("img")
         image.src = element.src
@@ -35,15 +35,22 @@ function images(images, template) {
     return res
 }
 
-var elem = document.querySelectorAll('.main-carousel');
-for (let index = 0; index < elem.length; index++) {
-    const element = elem[index];
-    var flkty = new Flickity( element, {
-        // options
-        cellAlign: 'left',
-        contain: true
-      });
+function carousel(images, template) {
+let elem = document.querySelector('.carousel');
+products.forEach(producto => {
+    const imgElement = document.createElement('img');
+    imgElement.src = producto.imagen;
+    carousel.appendChild(imgElement);
+});
+let flkty = new Flickity(element, {
+    // options
+    cellAlign: 'left',
+    contain: true
+});
 }
+
+    
+
 
 
 loadProducts();
